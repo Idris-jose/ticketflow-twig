@@ -1,0 +1,17 @@
+<nav class="bg-white shadow p-4">
+    <div class="max-w-container mx-auto flex justify-between items-center">
+        <a href="/" class="font-bold text-xl text-primary">TicketFlow</a>
+        <div class="space-x-4">
+            {% if user %}
+                <a href="/dashboard" class="text-gray-700">Dashboard</a>
+                <a href="/tickets" class="text-gray-700">Tickets</a>
+                <form method="POST" action="/logout" class="inline">
+                    <button type="submit" class="text-red-500">Logout</button>
+                </form>
+            {% else %}
+                <a href="/auth/login" class="text-gray-700">Login</a>
+                <a href="/auth/register" class="text-gray-700">Get Started</a>
+            {% endif %}
+        </div>
+    </div>
+</nav>

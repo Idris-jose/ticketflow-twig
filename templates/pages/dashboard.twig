@@ -1,0 +1,52 @@
+{% extends "base.twig" %}
+
+{% block title %}Dashboard - TicketFlow{% endblock %}
+
+{% block content %}
+<div class="max-w-6xl mx-auto p-6">
+    <!-- Header -->
+    <div class="flex justify-between items-center mb-8">
+        <h1 class="text-3xl font-bold">Welcome, {{ user.email }}</h1>
+        <form method="POST" action="/logout">
+            <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded-xl">
+                Logout
+            </button>
+        </form>
+    </div>
+
+    <!-- Stats -->
+    <div class="grid md:grid-cols-4 gap-6 mb-10">
+        <div class="bg-white p-6 rounded-xl shadow">
+            <h2 class="text-gray-500">Total Tickets</h2>
+            <p class="text-3xl font-bold">{{ stats.total }}</p>
+        </div>
+        <div class="bg-white p-6 rounded-xl shadow">
+            <h2 class="text-gray-500">Open</h2>
+            <p class="text-3xl font-bold text-green-500">{{ stats.open }}</p>
+        </div>
+        <div class="bg-white p-6 rounded-xl shadow">
+            <h2 class="text-gray-500">In Progress</h2>
+            <p class="text-3xl font-bold text-amber-500">{{ stats.in_progress }}</p>
+        </div>
+        <div class="bg-white p-6 rounded-xl shadow">
+            <h2 class="text-gray-500">Closed</h2>
+            <p class="text-3xl font-bold text-gray-500">{{ stats.closed }}</p>
+        </div>
+    </div>
+
+    <!-- Chart Placeholder -->
+    <div class="bg-white rounded-xl shadow p-6 mb-10">
+        <h2 class="text-xl font-semibold mb-4">Ticket Status Breakdown</h2>
+        <div class="h-64 bg-gray-100 rounded flex items-center justify-center">
+            <p class="text-gray-500">Chart.js integration would go here</p>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="text-center">
+        <a href="/tickets" class="bg-blue-600 text-white px-6 py-2 rounded-xl">
+            Manage Tickets
+        </a>
+    </div>
+</div>
+{% endblock %}

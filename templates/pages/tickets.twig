@@ -1,0 +1,86 @@
+{% extends "base.twig" %}
+
+{% block title %}Ticket Management - TicketFlow{% endblock %}
+
+{% block content %}
+<div class="{{ max_container_width }} mx-auto p-6">
+    <h1 class="text-3xl font-bold mb-6">Ticket Management</h1>
+
+    <!-- Ticket Form -->
+    <form method="POST" action="/tickets" class="bg-white p-6 rounded-xl shadow mb-8">
+        <h2 class="text-xl font-semibold mb-4">
+            {{ editing ? "Edit Ticket" : "Create Ticket" }}
+        </h2>
+
+        <input type="hidden" name="action" value="{{ editing ? 'update' : 'create' }}">
+        {% if editing %}
+        <input type="hidden" name="ticket_id" value="{{ editing }}">
+        {% endif %}
+
+        <div class="grid md:grid-cols-2 gap-4">
+            <div>
+                <label class="block text-sm font-medium mb-1">Title *</label>
+                <input
+                    type="text"
+                    name="title"
+                    value="{{ form.title }}"
+                    class="w-full border rounded-lg px-3 py-2"
+                    placeholder="Ticket title"
+                    required
+                />
+                {% if errors.title %}
+                <p class="text-red-500 text-sm mt-1">{{ errors.title }}</p>
+                {% endif %}
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium mb-1">Status *</label>
+                <select name="status" class="w-full border rounded-lg px-3 py-2" required>
+                    {% for key, status in ticket_statuses %}
+                    <option value="{{ status }}" {{ form.status == status ? 'selected' : '' }}>
+                        {{ status|replace({'_': ' '})|title }}
+                    </option>
+                    {% endfor %}
+                </select>
+                {% if errors.status %}
+                <p class="text-red-500 text-sm mt-1">{{ errors.status }}</p>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="mt-4">
+            <label class="block text-sm font-medium mb-1">Description</label>
+            <textarea
+                name="description"
+                class="w-full border rounded-lg px-3 py-2"
+                placeholder="Describe the issue"
+                rows="3"
+            >{{ form.description }}</textarea>
+        </div>
+
+        <div class="mt-6 flex space-x-4">
+            <button type="submit" class="bg-blue-400 text-white px-6 py-2 rounded-xl">
+                {{ editing ? "Update Ticket" : "Create Ticket" }}
+            </button>
+            {% if editing %}
+            <a href="/tickets" class="bg-gray-300 px-6 py-2 rounded-xl inline-block">
+                Cancel
+            </a>
+            {% endif %}
+        </div>
+    </form>
+
+    <!-- Ticket List -->
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {% if tickets is empty %}
+        <p class="text-gray-500 col-span-full text-center py-8">
+            No tickets found. Create one above.
+        </p>
+        {% else %}
+        {% for ticket in tickets %}
+        {% include 'components/ticket_card.twig' with {'ticket': ticket} %}
+        {% endfor %}
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

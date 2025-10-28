@@ -1,0 +1,29 @@
+<div class="bg-white rounded-xl shadow p-4 relative">
+    <div class="flex justify-between items-start">
+        <h3 class="text-lg font-semibold">{{ ticket.title }}</h3>
+        <span class="text-sm px-3 py-1 rounded-full {{ status_colors[ticket.status] }}">
+            {{ ticket.status|replace({'_': ' '}) }}
+        </span>
+    </div>
+    <p class="text-sm text-gray-600 mt-2">{{ ticket.description }}</p>
+    <p class="text-xs text-gray-400 mt-2">
+        {{ ticket.createdAt|date("m/d/Y H:i") }}
+    </p>
+
+    <div class="flex space-x-2 mt-4">
+        <form method="POST" action="/tickets" class="inline">
+            <input type="hidden" name="action" value="edit">
+            <input type="hidden" name="ticket_id" value="{{ ticket.id }}">
+            <button type="submit" class="bg-blue-500 text-white px-3 py-1 rounded">
+                Edit
+            </button>
+        </form>
+        <form method="POST" action="/tickets" class="inline" onsubmit="return confirm('Are you sure you want to delete this ticket?')">
+            <input type="hidden" name="action" value="delete">
+            <input type="hidden" name="ticket_id" value="{{ ticket.id }}">
+            <button type="submit" class="bg-red-500 text-white px-3 py-1 rounded">
+                Delete
+            </button>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,176 @@
+/* === landingpage.css === */
+
+/* General layout */
+body {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(to bottom, #ffffff, #eff6ff);
+    min-height: 100vh;
+    margin: 0;
+    overflow-x: hidden;
+}
+
+/* Utility classes */
+.relative {
+    position: relative;
+}
+
+.absolute {
+    position: absolute;
+}
+
+.min-h-screen {
+    min-height: 100vh;
+}
+
+/* Gradient background */
+.bg-gradient {
+    background: linear-gradient(to bottom, #ffffff, #eff6ff);
+}
+
+/* Circles */
+.circle {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.4;
+    filter: blur(40px);
+}
+
+.circle-blue {
+    top: 4rem;
+    left: -5rem;
+    width: 16rem;
+    height: 16rem;
+    background-color: #bfdbfe;
+}
+
+.circle-orange {
+    bottom: 2.5rem;
+    right: -4rem;
+    width: 18rem;
+    height: 18rem;
+    background-color: #fed7aa;
+}
+
+/* Container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 6rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+@media (min-width: 768px) {
+    .container {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+}
+
+/* Text styles */
+h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    color: #111827;
+    line-height: 1.2;
+}
+
+.text-primary {
+    color: #2563eb;
+}
+
+.text-gray {
+    color: #4b5563;
+}
+
+.text-lg {
+    font-size: 1.125rem;
+}
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.75rem;
+    text-decoration: none;
+    font-weight: 500;
+    transition: 0.2s;
+}
+
+.btn-primary {
+    background-color: #2563eb;
+    color: white;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+}
+
+.btn-primary:hover {
+    opacity: 0.9;
+}
+
+.btn-outline {
+    border: 2px solid #2563eb;
+    color: #2563eb;
+}
+
+.btn-outline:hover {
+    background-color: rgba(37, 99, 235, 0.1);
+}
+
+/* Hero image */
+.hero-image {
+    width: 100%;
+    max-width: 400px;
+    display: block;
+    margin: 2rem auto 0 auto;
+}
+
+/* Feature cards */
+.features {
+    max-width: 1200px;
+    margin: 5rem auto;
+    padding: 0 1.5rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    position: relative;
+    z-index: 10;
+}
+
+@media (min-width: 768px) {
+    .features {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.feature-card {
+    background-color: #ffffff;
+    border-radius: 1rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    padding: 1.5rem;
+    transition: box-shadow 0.3s ease;
+}
+
+.feature-card:hover {
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+}
+
+.feature-card h3 {
+    color: #2563eb;
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.feature-card p {
+    color: #4b5563;
+}
+
+/* Wave SVG positioning */
+.wave {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}

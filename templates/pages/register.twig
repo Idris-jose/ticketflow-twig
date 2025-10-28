@@ -1,0 +1,62 @@
+{% extends "base.twig" %}
+
+{% block title %}Create Account - TicketFlow{% endblock %}
+
+{% block content %}
+<div class="min-h-screen flex flex-col items-center justify-center bg-blue-50">
+    <div class="bg-white p-8 rounded-2xl shadow w-full max-w-md">
+        <h1 class="text-2xl font-bold mb-6 text-center">Create Account</h1>
+
+        {% if error %}
+        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+            {{ error }}
+        </div>
+        {% endif %}
+
+        <form method="POST" action="/auth/register" class="space-y-4">
+            <div>
+                <label class="block mb-1 text-sm font-medium text-gray-700">Full Name</label>
+                <input
+                    type="text"
+                    name="name"
+                    class="w-full border border-gray-300 rounded-lg p-2 focus:ring-primary focus:border-primary"
+                    required
+                />
+            </div>
+
+            <div>
+                <label class="block mb-1 text-sm font-medium text-gray-700">Email</label>
+                <input
+                    type="email"
+                    name="email"
+                    value="{{ email|default('') }}"
+                    class="w-full border border-gray-300 rounded-lg p-2 focus:ring-primary focus:border-primary"
+                    required
+                />
+            </div>
+
+            <div>
+                <label class="block mb-1 text-sm font-medium text-gray-700">Password</label>
+                <input
+                    type="password"
+                    name="password"
+                    class="w-full border border-gray-300 rounded-lg p-2 focus:ring-primary focus:border-primary"
+                    required
+                />
+            </div>
+
+            <button
+                type="submit"
+                class="w-full bg-primary text-white py-2 rounded-lg hover:opacity-90 transition"
+            >
+                Sign Up
+            </button>
+        </form>
+
+        <p class="text-sm text-gray-600 text-center mt-4">
+            Already have an account?
+            <a href="/auth/login" class="text-primary font-medium">Login</a>
+        </p>
+    </div>
+</div>
+{% endblock %}
