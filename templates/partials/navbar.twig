@@ -5,9 +5,7 @@
             {% if user %}
                 <a href="/dashboard" class="text-gray-700">Dashboard</a>
                 <a href="/tickets" class="text-gray-700">Tickets</a>
-                <form method="POST" action="/logout" class="inline">
-                    <button type="submit" class="text-red-500">Logout</button>
-                </form>
+               
             {% else %}
                 <a href="/auth/login" class="text-gray-700">Login</a>
                 <a href="/auth/register" class="text-gray-700">Get Started</a>
