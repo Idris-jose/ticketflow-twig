@@ -4,49 +4,45 @@
 
 {% block content %}
 <div class="min-h-screen flex flex-col items-center justify-center bg-blue-50">
-    <div class="bg-white p-8 rounded-2xl shadow w-full max-w-md">
-        <h1 class="text-2xl font-bold mb-6 text-center">Login</h1>
+  <div class="bg-white p-8 rounded-2xl shadow w-full max-w-md">
+    <h1 class="text-2xl font-bold mb-6 text-center">Login</h1>
 
-        {% if error %}
-        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
-            {{ error }}
-        </div>
-        {% endif %}
+    <form method="POST" action="/auth/login" class="space-y-4">
+      <div>
+        <label for="email" class="block mb-1 text-sm font-medium text-gray-700">Email</label>
+        <input
+          id="email"
+          type="email"
+          name="email"
+          value="{{ email|default('') }}"
+          class="w-full border border-gray-300 rounded-lg p-2 focus:ring-primary focus:border-primary"
+          required
+        />
+      </div>
 
-        <form method="POST" action="/auth/login" class="space-y-4">
-            <div>
-                <label class="block mb-1 text-sm font-medium text-gray-700">Email</label>
-                <input
-                    type="email"
-                    name="email"
-                    value="{{ email|default('') }}"
-                    class="w-full border border-gray-300 rounded-lg p-2 focus:ring-primary focus:border-primary"
-                    required
-                />
-            </div>
+      <div>
+        <label for="password" class="block mb-1 text-sm font-medium text-gray-700">Password</label>
+        <input
+          id="password"
+          type="password"
+          name="password"
+          class="w-full border border-gray-300 rounded-lg p-2 focus:ring-primary focus:border-primary"
+          required
+        />
+      </div>
 
-            <div>
-                <label class="block mb-1 text-sm font-medium text-gray-700">Password</label>
-                <input
-                    type="password"
-                    name="password"
-                    class="w-full border border-gray-300 rounded-lg p-2 focus:ring-primary focus:border-primary"
-                    required
-                />
-            </div>
+      <button
+        type="submit"
+        class="w-full bg-primary text-white py-2 rounded-lg hover:opacity-90 transition"
+      >
+        Login
+      </button>
+    </form>
 
-            <button
-                type="submit"
-                class="w-full bg-primary text-white py-2 rounded-lg hover:opacity-90 transition"
-            >
-                Login
-            </button>
-        </form>
-
-        <p class="text-sm text-gray-600 text-center mt-4">
-            Don't have an account?
-            <a href="/auth/register" class="text-primary font-medium">Sign up</a>
-        </p>
-    </div>
+    <p class="text-sm text-gray-600 text-center mt-4">
+      Don’t have an account?
+      <a href="/auth/register" class="text-primary font-medium">Sign up</a>
+    </p>
+  </div>
 </div>
 {% endblock %}

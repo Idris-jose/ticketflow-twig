@@ -133,8 +133,8 @@ body {
 
 /* Border utilities */
 .border { border-width: 1px; }
-.border-gray-300 { border-color: #d1d5db; }
-.border-red-400 { border-color: #f87171; }
+
+
 
 /* Width and height utilities */
 .w-full { width: 100%; }
