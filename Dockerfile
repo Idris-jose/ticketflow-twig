@@ -1,24 +1,33 @@
-# Use an official PHP image with Apache
+# Use official PHP image with Apache
 FROM php:8.2-apache
-
-# Copy project files
-COPY . /var/www/html/
 
 # Set working directory
 WORKDIR /var/www/html
 
+# Install system dependencies and PHP extensions
+RUN apt-get update && apt-get install -y \
+    git \
+    unzip \
+    libicu-dev \
+    libzip-dev \
+    zip \
+    && docker-php-ext-install intl zip opcache \
+    && a2enmod rewrite
+
 # Install Composer
-RUN apt-get update && apt-get install -y unzip git \
-    && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
+
+# Copy application code
+COPY . /var/www/html
 
 # Install PHP dependencies
-RUN composer install --no-dev --optimize-autoloader
+RUN composer install --no-dev --optimize-autoloader --no-interaction --no-progress
 
-# Set Apache to serve the /public folder
+# Configure Apache to serve from /public
 RUN sed -i 's!/var/www/html!/var/www/html/public!g' /etc/apache2/sites-available/000-default.conf
 
-# Expose Render port
+# Expose Render's default port
 EXPOSE 10000
 
-# Start Apache in the foreground
+# Start Apache
 CMD ["apache2-foreground"]
